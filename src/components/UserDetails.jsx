@@ -5,12 +5,14 @@ import DetailsShow from "./layouts/DetailsShow";
 import axios from "axios";
 const UserDetails = ({ id }) => {
   const [userData, setUserData] = useState("");
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     const getUserData = async () => {
       await axios
         .get(`https://dummyjson.com/users/${id}`)
         .then((response) => {
           setUserData(response.data);
+          setLoading(false);
         })
         .catch((error) => {
           console.log(error);
@@ -19,7 +21,9 @@ const UserDetails = ({ id }) => {
     getUserData();
   }, []);
   console.log(userData);
-  return (
+  return loading ? (
+    ""
+  ) : (
     <Flex className={"justify-around mt-10 flex-col lg:flex-row gap-y-4"}>
       <div className="w-full lg:w-[30%] rounded-lg ">
         <Image
