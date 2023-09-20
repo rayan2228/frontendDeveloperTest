@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const UserList = ({ designation, name, src }) => {
   return (
-    <div className="w-[30%] bg-white border border-gray-200 rounded-lg shadow text-center py-5">
+    <div className="w-full  sm:w-[30%] bg-white border border-gray-200 rounded-lg shadow text-center py-5">
       <Image
         src={src}
         className={"w-[150px] rounded-full inline-block border border-gray-200"}
