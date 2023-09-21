@@ -4,24 +4,15 @@ import Image from "./layouts/Image";
 import DetailsShow from "./layouts/DetailsShow";
 import axios from "axios";
 import Loading from "./layouts/Loading";
+import { useSelector } from "react-redux";
 const UserDetails = ({ id }) => {
-  const [userData, setUserData] = useState("");
+  const [userData, setUserData] = useState();
   const [loading, setLoading] = useState(true);
+  let allUserData = useSelector((state) => state.userLists.value);
   useEffect(() => {
-    const getUserData = async () => {
-      await axios
-        .get(`https://dummyjson.com/users/${id}`)
-        .then((response) => {
-          setUserData(response.data);
-          setLoading(false);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    };
-    getUserData();
+    setUserData(allUserData.find((user) => user.id == id));
+    setLoading(false);
   }, []);
-  console.log(userData);
   return loading ? (
     <Loading />
   ) : (

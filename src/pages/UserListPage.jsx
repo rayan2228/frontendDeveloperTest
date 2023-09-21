@@ -17,13 +17,15 @@ const UserListPage = () => {
         .get("https://dummyjson.com/users")
         .then((response) => {
           dispatch(addUserList(response.data.users));
+          localStorage.setItem("userList", JSON.stringify(response.data.users));
           setLoading(false);
         })
         .catch((error) => {
           console.log(error);
         });
     };
-    getUserList();
+    JSON.parse(localStorage.getItem("userList")).length === 0 && getUserList(),
+      setLoading(false);
   }, []);
   return (
     <section className="px-2 py-4 lg:px-2">
