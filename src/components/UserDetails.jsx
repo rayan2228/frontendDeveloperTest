@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import Flex from "./layouts/Flex";
 import Image from "./layouts/Image";
 import DetailsShow from "./layouts/DetailsShow";
-import axios from "axios";
 import Loading from "./layouts/Loading";
 import { useSelector } from "react-redux";
 const UserDetails = ({ id }) => {
