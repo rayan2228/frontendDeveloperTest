@@ -11,7 +11,10 @@ const UserDetailsPage = () => {
       <Container>
         <Heading title={" user details"} />
         <UserDetails id={id} />
-        <Link className="block py-4 mt-10 text-4xl font-bold text-center capitalize rounded-md bg-slate-900 text-yellow-50" to={"/"}>
+        <Link
+          className="block py-4 mt-10 text-4xl font-bold text-center capitalize rounded-md bg-slate-900 text-yellow-50"
+          to={"/"}
+        >
           go to user list
         </Link>
       </Container>
