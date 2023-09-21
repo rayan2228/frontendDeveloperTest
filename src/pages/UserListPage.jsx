@@ -2,14 +2,15 @@ import React, { useEffect, useState } from "react";
 import Container from "../components/layouts/Container";
 import Flex from "../components/layouts/Flex";
 import axios from "axios";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addUserList } from "../app/slices/userListSlice";
 import AllUserList from "../components/AllUserList";
 import Heading from "../components/layouts/Heading";
 import Loading from "../components/layouts/Loading";
-const UserListPage = () => {
-  const [loading, setLoading] = useState(true);
 
+const UserListPage = () => {
+  const allUserData = useSelector((state) => state.userLists.value);
+  const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
   useEffect(() => {
     const getUserList = async () => {
@@ -24,9 +25,9 @@ const UserListPage = () => {
           console.log(error);
         });
     };
-    JSON.parse(localStorage.getItem("userList")).length === 0 && getUserList(),
-      setLoading(false);
+    allUserData.length === 0 ? getUserList() : setLoading(false);
   }, []);
+
   return (
     <section className="px-2 py-4 lg:px-2">
       <Container>
