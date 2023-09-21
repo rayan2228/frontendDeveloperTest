@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Container from "../components/layouts/Container";
 import Flex from "../components/layouts/Flex";
 import axios from "axios";
@@ -6,7 +6,10 @@ import { useDispatch } from "react-redux";
 import { addUserList } from "../app/slices/userListSlice";
 import AllUserList from "../components/AllUserList";
 import Heading from "../components/layouts/Heading";
+import Loading from "../components/layouts/Loading";
 const UserListPage = () => {
+  const [loading, setLoading] = useState(true);
+
   const dispatch = useDispatch();
   useEffect(() => {
     const getUserList = async () => {
@@ -14,6 +17,7 @@ const UserListPage = () => {
         .get("https://dummyjson.com/users")
         .then((response) => {
           dispatch(addUserList(response.data.users));
+          setLoading(false);
         })
         .catch((error) => {
           console.log(error);
@@ -26,7 +30,7 @@ const UserListPage = () => {
       <Container>
         <Heading title="user lists" />
         <Flex className={"mt-10 flex-wrap justify-between gap-y-10"}>
-          <AllUserList />
+          {loading ? <Loading /> : <AllUserList />}
         </Flex>
       </Container>
     </section>

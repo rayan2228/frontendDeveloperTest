@@ -3,6 +3,7 @@ import Flex from "./layouts/Flex";
 import Image from "./layouts/Image";
 import DetailsShow from "./layouts/DetailsShow";
 import axios from "axios";
+import Loading from "./layouts/Loading";
 const UserDetails = ({ id }) => {
   const [userData, setUserData] = useState("");
   const [loading, setLoading] = useState(true);
@@ -22,10 +23,10 @@ const UserDetails = ({ id }) => {
   }, []);
   console.log(userData);
   return loading ? (
-    ""
+    <Loading />
   ) : (
-    <Flex className={"justify-around mt-10 flex-col lg:flex-row gap-y-4"}>
-      <div className="w-full lg:w-[30%] rounded-lg ">
+    <Flex className={"justify-between mt-10 flex-col lg:flex-row gap-y-4 "}>
+      <div className="w-full lg:w-[35%] rounded-lg ">
         <Image
           src={userData.image}
           className={"bg-slate-200 w-full rounded-lg "}

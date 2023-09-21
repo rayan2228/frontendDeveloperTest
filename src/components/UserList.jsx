@@ -14,7 +14,7 @@ const UserList = ({ designation, name, src,id }) => {
       <h5 class="text-sm text-gray-500 capitalize">{designation}</h5>
       <Link
         to={`/userdetails/${id}`}
-        className="inline-block px-4 py-2 mt-4 text-sm font-medium text-white bg-blue-700 rounded-lg hover:bg-blue-800"
+        className="inline-block px-4 py-2 mt-4 text-sm font-medium text-white rounded-lg bg-slate-900 hover:bg-slate-800"
       >
         view profile
       </Link>
